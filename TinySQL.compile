@@ -1,0 +1,10 @@
+flex TinySQL.l
+bison --verbose --debug -d TinySQL.y -o TinySQL.cc
+cc -c lex.yy.c -lfl -o lex.yy.o
+g++ -c StorageManager.cpp 
+g++ -c Join.cpp
+g++ -c OrderBy.cpp
+g++ -c DuplicateElimination.cpp
+g++ -c TwoPassJoin.cpp
+g++ StorageManager.o Join.o DuplicateElimination.o OrderBy.o TwoPassJoin.o lex.yy.o TinySQL.cc -o TinySQL
+./TinySQL
